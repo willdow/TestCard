@@ -66,10 +66,21 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String pseudo = editTextPseudo.getText().toString();
-                Intent unIntent = new Intent(StartActivity.this, MainActivity.class);
-                unIntent.putExtra("pseudo", pseudo);
-                startActivity(unIntent);
+                if (rdEasy.isChecked() || rdNormal.isChecked() || rdHard.isChecked()) {
+                    String pseudo = editTextPseudo.getText().toString();
+                    Intent unIntent = new Intent(StartActivity.this, MainActivity.class);
+                    unIntent.putExtra("pseudo", pseudo);
+                    if(rdEasy.isChecked() == true){
+                        unIntent.putExtra("rdEasy",rdEasy.isChecked());
+                    }
+                    else if(rdNormal.isChecked() ==true){
+                        unIntent.putExtra("rdNormal",rdNormal.isChecked());
+                    }
+                    else {
+                        unIntent.putExtra("rdHard", rdHard.isChecked());
+                    }
+                    startActivity(unIntent);
+                }
             }
         });
     }
